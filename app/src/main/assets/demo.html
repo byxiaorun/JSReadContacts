@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>读取联系人</title>
+    <script>
+            function show(json){
+                var jsonObjs=eval(json);   //将json字符串转换成json对象
+                //var a=document.getElementById("result");
+                //a.innerHTML=jsonObjs[1].name;
+                var table=document.getElementById("ContactTable");  //取出表格ContactTable
+                for(var i=0;i<jsonObjs.length;i++){
+                    var tr=table.insertRow(table.rows.length);     //添加一行
+                    var td1=tr.insertCell(0);
+                    var td2=tr.insertCell(1); td2.align="center";
+                    var td3=tr.insertCell(2);
+                    td1.innerHTML=jsonObjs[i].id;
+                    td2.innerHTML=jsonObjs[i].name;
+                    //td3.innerHTML=jsonObjs[i].phone;
+                    td3.innerHTML="<a href='javascript:myContacts.call(\""+jsonObjs[i].phone+"\")'>"+jsonObjs[i].phone+"</a>";
+                }
+            }
+        </script>
+</head>
+
+<body onload="javascript:myContacts.contactlist()">
+<div id="result"></div>
+<table border="0" width="100%" cellspacing="0" id="ContactTable">
+    <tr>
+        <td width="20%">用户ID</td>
+        <td align="center">姓名</td>
+        <td width="40%">号码</td>
+    </tr>
+</table>
+</body>
+</html>
